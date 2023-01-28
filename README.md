@@ -32,6 +32,7 @@ An experimental mode of enabling concurrent ssh connections (-t 5 for 5 connecti
 
 ### Usage Examples
 It accepts files with ips and credentias in the following format :
+
 my_hosts.txt
 ```
 192.168.1.1
@@ -82,7 +83,12 @@ So, the guidelines:
 
 - If you have multiple "No existing session" or "timed out" or "Connection reset by peer" errors an increase in the socket timer might help. For example, increase it from the default 15 sec to 30 --socket_timeout 30
 
-- If you have multiple "Error reading SSH protocol banner" errors then increasing the banner timeout (eg. --banner_timeout 200) might help the situation, also consider increasing the num of retries ( --req_retries) and the timer range between retries (eg. --retry_min_timer 3 --retry_max_timer 10). Multiple failures of this type are expected since the host might have anti-brute forcing rules or it might be even overloaded.
+- If you have multiple "Error reading SSH protocol banner" errors then most likely the server uses anti-brute forcing guards or it is overladed/slow host. Don't expect this number to be low though..
+In any case some things to try are:
+  - Decrease the concurrent threads (if in use)
+  - Increase the banner timeout (eg. --banner_timeout 200)
+  - Consider increasing the num of retries ( --req_retries) and the timer range between retries (eg. --retry_min_timer 3 --retry_max_timer 10)
+  - Add an attempt delay timer if you are not running in concurrent mode (--attempt_delay 5)
 
 - If you have "Too many open files" then you need to raise the limit of your file descriptors. You can do that temporarily and increase them to 5000 like this : ulimit -n 5000
 
