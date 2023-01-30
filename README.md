@@ -107,6 +107,11 @@ python3 paraforce.py -C my_wordlist.txt -H my_hosts.txt --socket_timeout 20 --au
 **para_report.sh** is a tool that parses the logs and provides the count of errors grouped. It can help you when you are trying to configure the values of your timers and attempts.
 Combining the guidelines above and the association of the timers with the errors you can succeed the best performance on your brute force system.
 
+Set the loglevel to INFO on paraforce.py so you can collect all the required information and then use para_report.sh to parse the results like this:
+```
+bash para_report.sh paraforce.log
+```
+
 Sample output of para_report.sh
 ```
 2022-11-26 13:00:39,785 INFO Success Req: 20
