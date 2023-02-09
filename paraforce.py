@@ -110,7 +110,7 @@ class SshModule (Module):
             return BAD_AUTH_ERR
 
         elif result == SUCCESS:            
-            self.log_all(f'\033[92mSUCCESS {ip} {user} {passwd}\033[0m')
+            self.log_all(f'\033[92mSUCCESS {ip} {user} {passwd} \033[0m')
             sleep(self.attempt_delay)            
             return SUCCESS
 
@@ -129,7 +129,7 @@ class SshModule (Module):
                 result = self.ssh_login(ip, user, passwd)
                 
                 if result == SUCCESS:                    
-                    self.log_all(f'\033[92mSUCCESS {ip} {user} {passwd}\033[0m')
+                    self.log_all(f'\033[92mSUCCESS {ip} {user} {passwd} \033[0m')
                     sleep(self.attempt_delay)                    
                     return SUCCESS
 
